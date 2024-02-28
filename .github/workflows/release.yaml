@@ -38,10 +38,14 @@ jobs:
         # reduce the X by 1, then build the tag name
         # save the tag name as `TAG_NAME` variable to file $GITHUB_ENV
         # Note, set-output is deprecated, so use alternative instead of ::set-output
+        # - name: "Get the current tag"
+        #   id: get_tag
+        #   run: |
+        #     echo "TAG_NAME=$(echo ${GITHUB_REF#refs/tags/} | awk -F. '{print $1-1"."$2"."$3}')" >> $GITHUB_ENV
         - name: "Get the current tag"
           id: get_tag
           run: |
-            echo "TAG_NAME=$(echo ${GITHUB_REF#refs/tags/} | awk -F. '{print $1-1"."$2"."$3}')" >> $GITHUB_ENV
+            echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
         # clean up the dev files
         - run: rm -rf ecs.php rector.php

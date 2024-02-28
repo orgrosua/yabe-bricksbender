@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.0.0-DEV
+Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

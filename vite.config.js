@@ -4,9 +4,6 @@ import { v4wp } from '@kucrut/vite-for-wp';
 import { wp_scripts } from '@kucrut/vite-for-wp/plugins';
 
 export default defineConfig({
-    build: {
-        target: 'esnext'
-    },
     plugins: [
         v4wp({
             input: {
@@ -23,11 +20,17 @@ export default defineConfig({
                 build: {
                     // ensure that manifest.json is not in ".vite/" folder
                     manifest: 'manifest.json',
+
+                    // disable sourcemap
+                    sourcemap: false,
                 },
             }),
-        }
+        },
     ],
     css: {
         lightningcss: true,
-    }
+    },
+    build: {
+        target: 'esnext',
+    },
 });
