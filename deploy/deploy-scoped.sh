@@ -61,4 +61,7 @@ rm -f "$RESULT_DIRECTORY/.gitattributes"
 rm -f "$RESULT_DIRECTORY/.gitignore"
 rm -f "$RESULT_DIRECTORY/.phpcs.xml"
 
+# WordPress new plugin submission requirements
+rm -f "$RESULT_DIRECTORY/vendor/paragonie/random_compat/build-phar.sh"
+
 note "Finished"
