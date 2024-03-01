@@ -1,4 +1,15 @@
+/**
+ * @module plain-classes 
+ * @package Yabe Bricksbender
+ * @since 1.0.0
+ * @author Joshua Gugun Siagian <suabahasa@gmail.com>
+ * 
+ * Add plain classes to the element panel.
+ */
+
 import './style.scss';
+
+import { logger } from '../../logger.js';
 
 import { nextTick, ref, watch } from 'vue';
 import autosize from 'autosize';
@@ -8,7 +19,7 @@ import HighlightInTextarea from './highlight-in-textarea';
 import { brxGlobalProp, brxIframeGlobalProp } from '../../constant.js';
 
 const textInput = document.createElement('textarea');
-textInput.classList.add('bricksbender-input');
+textInput.classList.add('bricksbender-plc-input');
 textInput.setAttribute('rows', '1');
 textInput.setAttribute('spellcheck', 'false');
 
@@ -166,7 +177,7 @@ watch([activeElementId, visibleElementPanel], (newVal, oldVal) => {
     if (newVal[0] && newVal[1]) {
         nextTick(() => {
             const panelElementClassesEl = document.querySelector('#bricks-panel-element-classes');
-            if (panelElementClassesEl.querySelector('.bricksbender-input') === null) {
+            if (panelElementClassesEl.querySelector('.bricksbender-plc-input') === null) {
                 panelElementClassesEl.appendChild(textInput);
                 hit = new HighlightInTextarea(textInput, {
                     highlight: [
@@ -261,3 +272,5 @@ function previewTributeEventCallbackUpDown() {
     const elementClasses = brxIframeGlobalProp.$_getElementClasses(activeEl);
     elementNode.classList.value = elementClasses.join(' ') + ' ' + li.dataset.tributeClassName;
 }
+
+logger('Module loaded!', { module: 'plain-classes' });

@@ -32,10 +32,6 @@ class PlainClasses implements ModuleInterface
 
     public function register_autocomplete()
     {
-        if (!class_exists(\SIUL::class) || !class_exists(\Yabe\Siul\Plugin::class)) {
-            return;
-        }
-
         do_action('a!yabe/bricksbender/module/plainclasses:register_autocomplete');
     }
 }

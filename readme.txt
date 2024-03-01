@@ -29,9 +29,10 @@ Features:
 - **Auto-complete**: Intelligent suggestions for [Tailwind CSS](https://siul.yabe.land/) class names.
 - **Quick class preview**: Preview CSS classes in the Bricks editor by hovering/navigating without adding.
 
-#### **HTML to Bricks elements** [Soon]
+✅ **HTML to Bricks**
 
 Convert HTML to Bricks elements. Easily convert Tailwind CSS components to Bricks elements.
+
 
 Visit [our website](https://bricksbender.yabe.land) for more information.
 
@@ -43,6 +44,10 @@ Visit [our website](https://bricksbender.yabe.land) for more information.
 - Image by [Freepik](https://www.flaticon.com/free-icon/brick-wall_3769316) on Flaticon
 
 == Changelog ==
+
+= Unreleased =
+* New: Introduced a new module, HTML to Bricks.
+* New: Introduced a new module, Plain Classes.
 
 = 1.0.0 =
 * 🐣 Initial release.

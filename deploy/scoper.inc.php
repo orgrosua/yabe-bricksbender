@@ -143,7 +143,6 @@ return [
 
             'SIUL',
             'Yabe\Siul\Plugin',
-
         ]
     ),
     'exclude-functions' => array_merge(

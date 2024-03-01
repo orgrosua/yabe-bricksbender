@@ -1,0 +1,10 @@
+.kofi-animated {
+    position: absolute;
+    z-index: 2;
+    transition: transform .15s ease-in-out;
+    transform: translate(0, 0);
+
+    &:hover {
+        transform: translate(-3px, -3px);
+    }
+}

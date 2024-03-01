@@ -1,0 +1,16 @@
+#wpcontent {
+    padding-left: 0;
+}
+
+/* Hide the update nag */
+.update-nag {
+    display: none;
+}
+
+#bricksbender-app {
+    svg.inline-svg {
+        display: inline-block;
+        height: 1em;
+        vertical-align: -.125em;
+    }
+}

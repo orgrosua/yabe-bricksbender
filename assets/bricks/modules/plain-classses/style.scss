@@ -1,5 +1,5 @@
 .bricks-panel {
-    textarea.bricksbender-input {
+    textarea.bricksbender-plc-input {
         /* margin-top: 4px; */
         min-height: auto;
         form-sizing: content;
@@ -39,7 +39,7 @@
     overflow: hidden !important;
 
     .hit-backdrop,
-    textarea.bricksbender-input {
+    textarea.bricksbender-plc-input {
         word-spacing: 8px !important;
     }
 

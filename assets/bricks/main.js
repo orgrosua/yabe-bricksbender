@@ -1,5 +1,6 @@
+import { logger } from './logger.js';
 
-console.log('Bricksbender is loading...');
+logger('Loading...');
 
 while (!document.querySelector('.brx-body')?.__vue_app__) {
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -9,11 +10,11 @@ while (!document.getElementById('bricks-builder-iframe')?.contentDocument.queryS
     await new Promise(resolve => setTimeout(resolve, 100));
 }
 
-console.log('Hello from Bricksbender!');
-
-console.log('Loading modules...');
+logger('Loading modules...');
 
 // TODO: dynamic import the features based on the enabled modules
-await import('./modules/plain-classses/plain-classes.js');
+await import('./modules/plain-classses/main.js');
+await import('./modules/html2bricks/main.js');
+await import('./modules/ko-fi/main.js');
 
-console.log('Modules loaded!');
+logger('Modules loaded!');
