@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -44,6 +44,9 @@ Visit [our website](https://bricksbender.yabe.land) for more information.
 - Image by [Freepik](https://www.flaticon.com/free-icon/brick-wall_3769316) on Flaticon
 
 == Changelog ==
+
+= 1.0.2 =
+* Fix: Modules not loading in the Bricks editor.
 
 = 1.0.1 =
 * New: Introduced a new module, HTML to Bricks.

@@ -114,11 +114,13 @@ class AssetVite
     }
 
     /**
-     * @inheritDoc AssetWebpack::asset_base_url()
+     * Get the asset base absolute path.
+     *
+     * @return string The asset base absolute path.
      */
     public static function asset_base_url(): string
     {
-        return AssetWebpack::asset_base_url();
+        return plugins_url('build/', BRICKSBENDER::FILE);
     }
 
     /**

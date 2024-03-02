@@ -82,6 +82,6 @@ class Config
 
         self::propertyAccessor()->setValue($options, $path, $value);
 
-        update_option(BRICKSBENDER::WP_OPTION . '_options', json_encode($options, JSON_THROW_ON_ERROR));
+        update_option(BRICKSBENDER::WP_OPTION . '_options', wp_json_encode($options, JSON_THROW_ON_ERROR));
     }
 }

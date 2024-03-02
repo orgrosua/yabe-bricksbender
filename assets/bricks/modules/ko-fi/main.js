@@ -32,4 +32,4 @@ if (coffee === -1 || (coffee !== 'done' && coffee !== 'never' && new Date() > ne
     });
 }
 
-logger('Module loaded!', { module: 'plain-classes' });
+logger('Module loaded!', { module: 'ko-fi' });

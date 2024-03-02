@@ -31,6 +31,7 @@ export default defineConfig({
         lightningcss: true,
     },
     build: {
-        target: 'esnext',
+        // target: 'esnext',
+        target: 'modules',
     },
 });
