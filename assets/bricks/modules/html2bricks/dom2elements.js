@@ -33,7 +33,7 @@ function transformElement(el) {
         id: generateId(),
         name: 'div',
         settings: {
-            // tag: tagName,
+            tag: tagName,
         },
         children: [],
     };
@@ -106,6 +106,8 @@ function transformElement(el) {
             altText: el.getAttribute('alt') || '',
         });
 
+        delete brxNode.settings.tag;
+
         return brxNode;
     }
 
@@ -126,6 +128,8 @@ function transformElement(el) {
             url: tagName === 'video' ? el.getAttribute('src') : el.getAttribute('src').split('?')[0],
         });
 
+        delete brxNode.settings.tag;
+
         return brxNode;
     }
 
@@ -142,7 +146,6 @@ function transformElement(el) {
             }
         });
 
-        // if has no children
         if (el.children.length === 0) {
             brxNode.name = 'text-basic';
             merge(brxNode.settings, {
@@ -151,7 +154,6 @@ function transformElement(el) {
 
             return brxNode;
         } else {
-            brxNode.name = 'text-link';
             merge(brxNode.settings, {
                 text: el.innerText,
             });
