@@ -1,8 +1,16 @@
 import { customAlphabet } from 'nanoid';
 import { merge } from 'lodash-es';
 
+const randomId = () => customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 6)();
+
 function generateId() {
-    return 'siul' + customAlphabet('1234567890abcdef', 6)();
+    let id = randomId();
+
+    while (id.match(/^\d/)) {
+        id = randomId();
+    }
+
+    return `siul${id}`;
 }
 
 /**

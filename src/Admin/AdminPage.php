@@ -59,14 +59,16 @@ class AdminPage
 
     private function enqueue_scripts()
     {
+        $handle = BRICKSBENDER::WP_OPTION . ':admin';
+
         AssetVite::get_instance()->enqueue_asset('assets/admin/main.js', [
-            'handle' => BRICKSBENDER::WP_OPTION . ':admin',
+            'handle' => $handle,
             'in_footer' => true,
         ]);
 
-        // wp_set_script_translations(BRICKSBENDER::WP_OPTION . ':admin', 'yabe-bricksbender');
+        // wp_set_script_translations($handle, 'yabe-bricksbender');
 
-        // wp_localize_script(BRICKSBENDER::WP_OPTION . ':admin', 'bricksbender', [
+        // wp_localize_script($handle, 'bricksbender', [
         //     '_version' => BRICKSBENDER::VERSION,
         //     '_wpnonce' => wp_create_nonce(BRICKSBENDER::WP_OPTION),
         //     'web_history' => self::get_page_url(),
