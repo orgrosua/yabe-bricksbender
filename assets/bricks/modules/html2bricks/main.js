@@ -64,7 +64,7 @@ async function htmlPasteHandler() {
         return;
     }
 
-    const clipboardText = await navigator.clipboard.readText();
+    const clipboardText = (await navigator.clipboard.readText()).trim();
 
     if (!clipboardText || clipboardText.charAt(0) !== '<') {
         logger('Pasted content is not HTML', { module: 'html2bricks', type: 'error' });
@@ -93,6 +93,9 @@ async function htmlPasteHandler() {
     brxGlobalProp.$_pasteElements();
 
     brxGlobalProp.$_showMessage('[Bricksbender] HTML pasted');
+
+    // restore clipboard content
+    await navigator.clipboard.writeText(clipboardText);
 }
 
 /**
