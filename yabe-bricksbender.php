@@ -15,6 +15,7 @@
  * Donate link:         https://ko-fi.com/Q5Q75XSF7
  * Text Domain:         yabe-bricksbender
  * Domain Path:         /languages
+ * License:             GPL-3.0-or-later
  *
  * @package             Yabe
  * @author              Joshua Gugun Siagian <suabahasa@gmail.com>

@@ -43,6 +43,12 @@ Visit [our website](https://bricksbender.yabe.land) for more information.
 = Credits =
 - Image by [Freepik](https://www.flaticon.com/free-icon/brick-wall_3769316) on Flaticon
 
+= Contributors & Developers =
+
+Interested in development?
+Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to get involved.
+
+
 == Changelog ==
 
 = 1.0.4 =
