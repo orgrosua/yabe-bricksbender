@@ -20,7 +20,7 @@ import { brxGlobalProp, brxIframeGlobalProp } from '../../constant.js';
 
 const textInput = document.createElement('textarea');
 textInput.classList.add('bricksbender-plc-input');
-textInput.setAttribute('rows', '1');
+textInput.setAttribute('rows', '3');
 textInput.setAttribute('spellcheck', 'false');
 
 const visibleElementPanel = ref(false);
