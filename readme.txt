@@ -54,6 +54,7 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 = UNRELEASED =
 * Improve: [plain-classes] Open the class suggestion on text selection.
 * Improve: [plain-classes] Add border to the text input for better visibility.
+* Improve: [plain-classes] Colorized background of the class based on the breakpoint/screen size.
 
 = 1.0.5 =
 * Fix: Comply to the WP.org plugin submission review.
