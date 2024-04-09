@@ -190,3 +190,34 @@
         }
     }
 }
+
+.bricksbender-plc-action-container {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-bottom: 2px;
+    margin-top: 6px;
+
+    .actions {
+        display: flex;
+        gap: 4px;
+
+        .bricks-svg-wrapper {
+            align-items: center;
+            background-color: var(--builder-bg-2);
+            border-radius: var(--builder-border-radius);
+            cursor: pointer;
+            display: flex;
+            height: 24px;
+            justify-content: center;
+            width: 24px;
+
+            .bricks-svg.icon-tabler {
+                fill: none;
+                height: 18px;
+                width: 18px;
+            }
+        }
+    }
+}
