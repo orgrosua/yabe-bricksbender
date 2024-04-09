@@ -28,13 +28,14 @@
 }
 
 .hit-container {
-    margin-top: 2px;
+    border: 1px solid color-mix(in srgb, var(--builder-color-accent) 50%, white 1%);
+    margin-top: 6px;
     display: inline-block;
     position: relative;
     width: 100%;
     line-height: 26px !important;
     font-size: 10px;
-    background-color: var(--builder-bg) !important;
+    background-color: color-mix(in srgb, var(--builder-bg) 10%, white 0%) !important;
     font-family: Consolas, monaco, Courier New, monospace;
     overflow: hidden !important;
 

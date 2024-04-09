@@ -51,8 +51,12 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
+= UNRELEASED =
+* Improve: [plain-classes] Open the class suggestion on text selection.
+* Improve: [plain-classes] Add border to the text input for better visibility.
+
 = 1.0.5 =
-* Fix: Comply to the WP.org plugin submission review
+* Fix: Comply to the WP.org plugin submission review.
 
 = 1.0.4 =
 * Fix: [html2bricks] Alpine.js compatibility issue.
