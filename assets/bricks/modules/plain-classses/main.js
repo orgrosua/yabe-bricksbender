@@ -18,10 +18,24 @@ import Tribute from 'tributejs';
 import HighlightInTextarea from './highlight-in-textarea';
 import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js';
 
-const textInput = document.createElement('textarea');
-textInput.classList.add('bricksbender-plc-input');
-textInput.setAttribute('rows', '3');
-textInput.setAttribute('spellcheck', 'false');
+const textInput = document.createRange().createContextualFragment(/*html*/ `
+    <textarea id="bricksbender-plc-input" class="bricksbender-plc-input" rows="3" spellcheck="false"></textarea>
+`).querySelector('#bricksbender-plc-input');
+
+const containerAction = document.createRange().createContextualFragment(/*html*/ `
+    <div class="bricksbender-plc-action-container">
+        <div class="actions">
+        </div>
+    </div>
+`).querySelector('.bricksbender-plc-action-container');
+const containerActionButtons = containerAction.querySelector('.actions');
+
+const classSortButton = document.createRange().createContextualFragment(/*html*/ `
+        <span id="bricksbender-plc-class-sort" class="bricks-svg-wrapper bricksbender-plc-class-sort" data-balloon="Automatic Class Sorting" data-balloon-pos="bottom-right">
+            <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" class="bricks-svg icon icon-tabler icons-tabler-outline icon-tabler-reorder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M17 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 11v-3a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v3" /><path d="M16.5 8.5l2.5 2.5l2.5 -2.5" /></svg>    
+        </span>
+`).querySelector('#bricksbender-plc-class-sort');
+containerActionButtons.appendChild(classSortButton);
 
 const visibleElementPanel = ref(false);
 const activeElementId = ref(null);
@@ -223,6 +237,8 @@ watch([activeElementId, visibleElementPanel], (newVal, oldVal) => {
         nextTick(() => {
             const panelElementClassesEl = document.querySelector('#bricks-panel-element-classes');
             if (panelElementClassesEl.querySelector('.bricksbender-plc-input') === null) {
+                panelElementClassesEl.appendChild(containerAction);
+
                 panelElementClassesEl.appendChild(textInput);
                 hit = new HighlightInTextarea(textInput, {
                     highlight: [
@@ -237,11 +253,11 @@ watch([activeElementId, visibleElementPanel], (newVal, oldVal) => {
                         },
                     ],
                 });
-
             }
         });
     }
 });
+
 
 textInput.addEventListener('input', function (e) {
     brxGlobalProp.$_activeElement.value.settings._cssClasses = e.target.value;
@@ -324,6 +340,16 @@ textInput.addEventListener('tribute-active-true', function (e) {
             });
         }
     });
+});
+
+classSortButton.addEventListener('click', function (e) {
+    if (brxIframe.contentWindow.siul?.loaded?.module?.classSorter !== true) {
+        return;
+    }
+
+    textInput.value = brxIframe.contentWindow.siul.module.classSorter.sort(textInput.value);
+    brxGlobalProp.$_activeElement.value.settings._cssClasses = textInput.value;
+    onTextInputChanges();
 });
 
 
