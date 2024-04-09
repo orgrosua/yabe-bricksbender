@@ -253,6 +253,62 @@ textInput.addEventListener('tribute-active-true', function (e) {
     });
 });
 
+
+function truncateText(text) {
+    // character to find: non-alphanumeric characterr, `[`, `]`, `'`, `#`, `"` and space
+    const regex = /[^a-zA-Z0-9\[\]'"#\s]/g;
+
+    // find all
+    const match = text.match(regex);
+
+    // if match is not found, return the original text
+    if (!match) return text;
+
+    // find the last index of the match
+    const lastIndex = text.lastIndexOf(match[match.length - 1]);
+
+    // truncate the text
+    return text.slice(0, lastIndex + 1);
+}
+
+textInput.addEventListener('mouseup', function (e) {
+    let selectedText = textInput.value.substring(textInput.selectionStart, textInput.selectionEnd);
+
+    let trimedText = selectedText.trim();
+
+    // no selected text
+    if (trimedText.length === 0) {
+        return;
+    }
+
+    textInput.setSelectionRange(textInput.selectionStart, textInput.selectionStart + selectedText.trimEnd().length);
+
+    // reselect the start text to the left before the first space. reselect the end text to the right after the before space
+    let start = textInput.selectionStart;
+    let end = textInput.selectionEnd;
+
+    while (start > 0 && textInput.value[start - 1] !== ' ') {
+        start--;
+    }
+
+    while (end < textInput.value.length && textInput.value[end] !== ' ') {
+        end++;
+    }
+
+    textInput.setSelectionRange(start, end);
+    selectedText = textInput.value.substring(textInput.selectionStart, textInput.selectionEnd);
+
+    let trunctedText = truncateText(selectedText);
+
+    textInput.setSelectionRange(end, end);
+
+    tribute.current.element = textInput;
+    tribute.current.collection = tribute.collection[0];
+    tribute.current.mentionText = trunctedText;
+
+    tribute.showMenuFor(textInput);
+});
+
 function previewAddClass(className) {
     const elementNode = brxIframeGlobalProp.$_getElementNode(brxIframeGlobalProp.$_activeElement.value);
     elementNode.classList.add(className);
