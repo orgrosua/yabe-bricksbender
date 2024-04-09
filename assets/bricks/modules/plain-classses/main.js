@@ -16,7 +16,7 @@ import autosize from 'autosize';
 import Tribute from 'tributejs';
 
 import HighlightInTextarea from './highlight-in-textarea';
-import { brxGlobalProp, brxIframeGlobalProp } from '../../constant.js';
+import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js';
 
 const textInput = document.createElement('textarea');
 textInput.classList.add('bricksbender-plc-input');
@@ -25,6 +25,51 @@ textInput.setAttribute('spellcheck', 'false');
 
 const visibleElementPanel = ref(false);
 const activeElementId = ref(null);
+
+let twConfig = null;
+let screenBadgeColors = [];
+
+(async () => {
+    if (brxIframe.contentWindow.tailwind) {
+        const tw = brxIframe.contentWindow.tailwind;
+        twConfig = await tw.resolveConfig(tw.config);
+
+        // find all colors that value a object and the object has 500 key
+        let baseColors = Object.keys(tw.colors).filter((color) => {
+            return typeof tw.colors[color] === 'object' && tw.colors[color][500] !== undefined && ![
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone",
+                "warmGray",
+                "trueGray",
+                "coolGray",
+                "blueGray"
+            ].includes(color);
+        });
+
+        baseColors = baseColors.map((color) => {
+            return {
+                name: color,
+                value: tw.colors[color][500],
+            };
+        });
+
+        // randomize the base colors
+        baseColors.sort(() => Math.random() - 0.5);
+
+        let screenKeys = Object.keys(twConfig.theme.screens);
+
+        for (let i = 0; i < screenKeys.length; i++) {
+            screenBadgeColors.push({
+                screen: screenKeys[i],
+                color: baseColors[i].value,
+            });
+        }
+    }
+})();
+
 
 let hit = null; // highlight any text except spaces and new lines
 
@@ -212,6 +257,34 @@ function onTextInputChanges() {
         tribute.hideMenu();
     });
 };
+
+textInput.addEventListener('highlights-updated', function (e) {
+    colorizeBackground();
+
+});
+
+function colorizeBackground() {
+    if (twConfig === null) return;
+
+    if (screenBadgeColors.length === 0) return;
+
+    const markElements = document.querySelectorAll('.hit-backdrop>.hit-highlights.hit-content>mark[class="word"]');
+
+    markElements.forEach((markElement) => {
+        // get the text content of the `mark` element
+        const text = markElement.textContent;
+
+        // loop through all screen badge colors
+        screenBadgeColors.forEach((screenBadgeColor) => {
+            // if the text content of the `mark` element contains the screen name
+            if (text.includes(screenBadgeColor.screen + ':')) {
+                const ruleVal = `color-mix(in srgb, ${screenBadgeColor.color} 20%, white 1%)`;
+                markElement.style.backgroundColor = ruleVal;
+                markElement.style.outlineColor = ruleVal;
+            }
+        });
+    });
+}
 
 const observerAutocomplete = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {

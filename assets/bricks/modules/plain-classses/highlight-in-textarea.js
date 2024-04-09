@@ -229,6 +229,7 @@ HighlightInTextarea.prototype = {
 
     renderMarks: function (boundaries) {
         let input = this.el.value;
+        const originalInput = input;
         boundaries.forEach(function (boundary, index) {
             let markup;
             if (boundary.type === 'start') {
@@ -250,7 +251,13 @@ HighlightInTextarea.prototype = {
             function (match, subMatch) {
                 const className = boundaries[+subMatch].className;
                 if (className) {
-                    return '<mark class="' + className + '">';
+                    let openMark = '<mark class="' + className + '"';
+                    if (className === 'word') {
+                        let dw = originalInput.slice(boundaries[+subMatch].index, boundaries[+subMatch - 1].index);
+                        dw = dw.replace(/"/g, '&quot;');
+                        openMark += ' data-word="' + dw + '"';
+                    }
+                    return openMark + '>';
                 } else {
                     return '<mark>';
                 }
@@ -262,6 +269,9 @@ HighlightInTextarea.prototype = {
         input += '<mark class="placeholder"> ⚡ </mark>';
 
         this.highlights.innerHTML = input;
+
+        // trigger a custom event to notify the listener that the highlights have been updated
+        this.el.dispatchEvent(new CustomEvent('highlights-updated'));
     },
 
     handleScroll: function () {
