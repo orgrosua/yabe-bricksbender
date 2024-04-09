@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -51,7 +51,7 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
-= UNRELEASED =
+= 1.0.6 =
 * Improve: [plain-classes] Open the class suggestion on text selection.
 * Improve: [plain-classes] Add border to the text input for better visibility.
 * Improve: [plain-classes] Colorized background of the class based on the breakpoint/screen size.
