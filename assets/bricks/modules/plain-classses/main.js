@@ -22,10 +22,14 @@ import { getHighlighter } from 'shiki';
 import HighlightInTextarea from './highlight-in-textarea';
 import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js';
 
-const shikiHighlighter = await getHighlighter({
-    themes: ['dark-plus', 'light-plus'],
-    langs: ['css'],
-})
+let shikiHighlighter = null;
+
+(async () => {
+    shikiHighlighter = await getHighlighter({
+        themes: ['dark-plus', 'light-plus'],
+        langs: ['css'],
+    });
+})();
 
 const textInput = document.createRange().createContextualFragment(/*html*/ `
     <textarea id="bricksbender-plc-input" class="bricksbender-plc-input" rows="3" spellcheck="false"></textarea>
