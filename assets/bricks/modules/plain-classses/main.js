@@ -8,15 +8,24 @@
  */
 
 import './style.scss';
+// import 'tippy.js/dist/tippy.css'; // optional for styling
 
 import { logger } from '../../logger.js';
+
+import tippy, { followCursor } from 'tippy.js';
 
 import { nextTick, ref, watch } from 'vue';
 import autosize from 'autosize';
 import Tribute from 'tributejs';
+import { getHighlighter } from 'shiki';
 
 import HighlightInTextarea from './highlight-in-textarea';
 import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js';
+
+const shikiHighlighter = await getHighlighter({
+    themes: ['dark-plus', 'light-plus'],
+    langs: ['css'],
+})
 
 const textInput = document.createRange().createContextualFragment(/*html*/ `
     <textarea id="bricksbender-plc-input" class="bricksbender-plc-input" rows="3" spellcheck="false"></textarea>
@@ -84,7 +93,6 @@ let screenBadgeColors = [];
     }
 })();
 
-
 let hit = null; // highlight any text except spaces and new lines
 
 autosize(textInput);
@@ -104,7 +112,7 @@ const tribute = new Tribute({
     autocompleteMode: true,
 
     // Limits the number of items in the menu
-    menuItemLimit: 30,
+    menuItemLimit: 40,
 
     noMatchTemplate: '',
 
@@ -276,8 +284,105 @@ function onTextInputChanges() {
 
 textInput.addEventListener('highlights-updated', function (e) {
     colorizeBackground();
-
+    hoverPreviewProvider();
 });
+
+function hoverPreviewProvider() {
+    if (brxIframe.contentWindow.siul?.loaded?.module?.classNameToCss !== true) {
+        return;
+    }
+
+    let someTippyIsVisible = false;
+
+    let registeredTippyElements = [];
+
+    // when mouse are entering the `.hit-container` element, get the coordinates of the mouse and check if the mouse is hovering the `mark` element
+    document.querySelector('.hit-container').addEventListener('mousemove', function (event) {
+        const x = event.clientX;
+        const y = event.clientY;
+
+        let detectedMarkWordElement = null;
+
+        // get all elements that overlap the mouse
+        const elements = document.elementsFromPoint(x, y);
+
+        // loop through all elements
+        elements.forEach((element) => {
+            // if the element is a `mark` element
+            if (element.matches('mark[class="word"]')) {
+                detectedMarkWordElement = element;
+            }
+        });
+
+        if (detectedMarkWordElement === null) {
+            if (someTippyIsVisible === false) {
+                return;
+            }
+            someTippyIsVisible = false;
+
+            registeredTippyElements.forEach((tippyInstance) => {
+                tippyInstance.destroy();
+            });
+
+            registeredTippyElements = [];
+
+            return;
+        }
+
+        if (someTippyIsVisible === detectedMarkWordElement.textContent) {
+            return;
+        } else {
+            registeredTippyElements.forEach((tippyInstance) => {
+                tippyInstance.destroy();
+            });
+
+            registeredTippyElements = [];
+        }
+
+        const generatedCssCode = brxIframe.contentWindow.siul.module.classNameToCss.generate(detectedMarkWordElement.textContent);
+        if (generatedCssCode === null) {
+            return null;
+        };
+
+        someTippyIsVisible = detectedMarkWordElement.textContent;
+
+        const tippyInstance = tippy(detectedMarkWordElement, {
+            plugins: [followCursor],
+            allowHTML: true,
+            arrow: false,
+            duration: [500, null],
+            followCursor: true,
+            trigger: 'manual',
+
+            content: (reference) => {
+                return shikiHighlighter.codeToHtml(generatedCssCode, {
+                    lang: 'css',
+                    theme: 'dark-plus',
+                });
+            }
+        });
+
+        tippyInstance.show();
+
+        // push the element to the registered tippy elements
+        registeredTippyElements.push(tippyInstance);
+
+        detectedMarkWordElement = null;
+    });
+
+    // on mouse leave the `.hit-container` element, hide all tippy
+    document.querySelector('.hit-container').addEventListener('mouseleave', function (event) {
+        console.log('mouseleave');
+
+        someTippyIsVisible = false;
+
+        registeredTippyElements.forEach((tippyInstance) => {
+            tippyInstance.destroy();
+        });
+
+        registeredTippyElements = [];
+    });
+}
 
 function colorizeBackground() {
     if (twConfig === null) return;
