@@ -3,8 +3,8 @@ Contributors: suabahasa, rosua
 Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder
 Requires at least: 6.0
-Tested up to: 6.4
-Stable tag: 1.0.7
+Tested up to: 6.5
+Stable tag: 1.0.8
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -27,6 +27,8 @@ Add the ability to write plain CSS classes to Bricks elements without adding the
 
 Features:
 - **Auto-complete**: Intelligent suggestions for [Tailwind CSS](https://siul.yabe.land/) class names.
+- **Hover Class Name**: Hover the Class Name to preview the generated CSS code.
+- **Automatic Class Sorting**: Sort the classes based on the Tailwind CSS [official recommendation](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
 - **Quick class preview**: Preview CSS classes in the Bricks editor by hovering/navigating without adding.
 
 ✅ **HTML to Bricks**
@@ -51,7 +53,7 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
-= 1.0.7 =
+= 1.0.8 =
 * Improve: [plain-classes] Hover the Class Name to preview the generated CSS code.
 
 = 1.0.6 =

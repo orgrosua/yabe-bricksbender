@@ -32,7 +32,7 @@ let shikiHighlighter = null;
 })();
 
 const textInput = document.createRange().createContextualFragment(/*html*/ `
-    <textarea id="bricksbender-plc-input" class="bricksbender-plc-input" rows="3" spellcheck="false"></textarea>
+    <textarea id="bricksbender-plc-input" class="bricksbender-plc-input" rows="2" spellcheck="false"></textarea>
 `).querySelector('#bricksbender-plc-input');
 
 const containerAction = document.createRange().createContextualFragment(/*html*/ `
@@ -265,6 +265,8 @@ watch([activeElementId, visibleElementPanel], (newVal, oldVal) => {
                         },
                     ],
                 });
+
+                autosize.update(textInput);
             }
         });
     }
@@ -376,8 +378,6 @@ function hoverPreviewProvider() {
 
     // on mouse leave the `.hit-container` element, hide all tippy
     document.querySelector('.hit-container').addEventListener('mouseleave', function (event) {
-        console.log('mouseleave');
-
         someTippyIsVisible = false;
 
         registeredTippyElements.forEach((tippyInstance) => {
