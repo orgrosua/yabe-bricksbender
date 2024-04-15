@@ -110,14 +110,14 @@ jobs:
         - run: sh deploy/deploy-scoped.sh orgrosua-deploy orgrosua-prefixed
 
         # deploy to WordPress.org SVN repository
-        # - name: WordPress Plugin Deploy
-        #   uses: 10up/action-wordpress-plugin-deploy@stable
-        #   env:
-        #     SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-        #     SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-        #     SLUG: yabe-bricksbender
-        #     BUILD_DIR: orgrosua-prefixed
-        #     VERSION: ${{ env.TAG_NAME }}
+        - name: WordPress Plugin Deploy
+          uses: 10up/action-wordpress-plugin-deploy@stable
+          env:
+            SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+            SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+            SLUG: yabe-bricksbender
+            BUILD_DIR: orgrosua-prefixed
+            VERSION: ${{ env.TAG_NAME }}
 
         # clone remote repository, so we can push it
         - uses: actions/checkout@v4
