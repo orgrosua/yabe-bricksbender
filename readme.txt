@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -52,6 +52,10 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 
 == Changelog ==
+
+= 1.0.10 =
+* Fix: [plain-classes] revert the Open the class suggestion on text selection [v1.0.6].
+* Improve: [plain-classes] Hover the Class Name performance.
 
 = 1.0.9 =
 * **New**: Yabe Bricksbender is now available on [WordPress.org](https://wordpress.org/plugins/yabe-bricksbender/)
