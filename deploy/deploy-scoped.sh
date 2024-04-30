@@ -61,7 +61,7 @@ rm -f "$RESULT_DIRECTORY/.gitignore"
 rm -f "$RESULT_DIRECTORY/.phpcs.xml"
 
 # WordPress new plugin submission requirements: should distribute the composer.json file
-# rm -f "$RESULT_DIRECTORY/composer.json"
+rm -f "$RESULT_DIRECTORY/composer.json"
 
 # WordPress new plugin submission review
 rm -f "$RESULT_DIRECTORY/vendor/paragonie/random_compat/build-phar.sh"

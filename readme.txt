@@ -1,10 +1,10 @@
 === Yabe Bricksbender ===
 Contributors: suabahasa, rosua
 Donate link: https://ko-fi.com/Q5Q75XSF7
-Tags: bricks builder
+Tags: bricks builder, tailwind css
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -53,37 +53,40 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
+= 1.0.11 =
+* **Improve**: Reduce the plugin file size.
+
 = 1.0.10 =
-* Fix: [plain-classes] revert the Open the class suggestion on text selection [v1.0.6].
-* Improve: [plain-classes] Hover the Class Name performance.
+* **Fix**: [plain-classes] revert the Open the class suggestion on text selection [v1.0.6].
+* **Improve**: [plain-classes] Hover the Class Name performance.
 
 = 1.0.9 =
 * **New**: Yabe Bricksbender is now available on [WordPress.org](https://wordpress.org/plugins/yabe-bricksbender/)
 
 = 1.0.8 =
-* Improve: [plain-classes] Hover the Class Name to preview the generated CSS code.
+* **Improve**: [plain-classes] Hover the Class Name to preview the generated CSS code.
 
 = 1.0.6 =
-* Improve: [plain-classes] Open the class suggestion on text selection.
-* Improve: [plain-classes] Add border to the text input for better visibility.
-* Improve: [plain-classes] Colorized background of the class based on the breakpoint/screen size.
-* Improve: [plain-classes] Automatic Class Sorting with Prettier. Based on the official [Prettier plugin for Tailwind CSS](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
+* **Improve**: [plain-classes] Open the class suggestion on text selection.
+* **Improve**: [plain-classes] Add border to the text input for better visibility.
+* **Improve**: [plain-classes] Colorized background of the class based on the breakpoint/screen size.
+* **Improve**: [plain-classes] Automatic Class Sorting with Prettier. Based on the official [Prettier plugin for Tailwind CSS](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
 
 = 1.0.5 =
-* Fix: Comply to the WP.org plugin submission review.
+* **Fix**: Comply to the WP.org plugin submission review.
 
 = 1.0.4 =
-* Fix: [html2bricks] Alpine.js compatibility issue.
+* **Fix**: [html2bricks] Alpine.js compatibility issue.
 
 = 1.0.3 =
-* Fix: [html2bricks] Preserve the original tag name.
+* **Fix**: [html2bricks] Preserve the original tag name.
 
 = 1.0.2 =
-* Fix: Modules not loading in the Bricks editor.
+* **Fix**: Modules not loading in the Bricks editor.
 
 = 1.0.1 =
-* New: Introduced a new module, HTML to Bricks.
-* New: Introduced a new module, Plain Classes.
+* **New**: Introduced a new module, HTML to Bricks.
+* **New**: Introduced a new module, Plain Classes.
 
 = 1.0.0 =
 * 🐣 Initial release.

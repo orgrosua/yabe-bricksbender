@@ -17,7 +17,8 @@ import tippy, { followCursor } from 'tippy.js';
 import { nextTick, ref, watch } from 'vue';
 import autosize from 'autosize';
 import Tribute from 'tributejs';
-import { getHighlighter } from 'shiki';
+
+import { getHighlighterCore, loadWasm } from 'shiki/core';
 
 import HighlightInTextarea from './highlight-in-textarea';
 import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js';
@@ -25,9 +26,15 @@ import { brxGlobalProp, brxIframeGlobalProp, brxIframe } from '../../constant.js
 let shikiHighlighter = null;
 
 (async () => {
-    shikiHighlighter = await getHighlighter({
-        themes: ['dark-plus', 'light-plus'],
-        langs: ['css'],
+    await loadWasm(import('shiki/onig.wasm?init'));
+    shikiHighlighter = await getHighlighterCore({
+        themes: [
+            import('shiki/themes/dark-plus.mjs'),
+            import('shiki/themes/light-plus.mjs'),
+        ],
+        langs: [
+            import('shiki/langs/css.mjs'),
+        ],
     });
 })();
 
@@ -44,9 +51,9 @@ const containerAction = document.createRange().createContextualFragment(/*html*/
 const containerActionButtons = containerAction.querySelector('.actions');
 
 const classSortButton = document.createRange().createContextualFragment(/*html*/ `
-        <span id="bricksbender-plc-class-sort" class="bricks-svg-wrapper bricksbender-plc-class-sort" data-balloon="Automatic Class Sorting" data-balloon-pos="bottom-right">
-            <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" class="bricks-svg icon icon-tabler icons-tabler-outline icon-tabler-reorder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M17 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 11v-3a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v3" /><path d="M16.5 8.5l2.5 2.5l2.5 -2.5" /></svg>    
-        </span>
+    <span id="bricksbender-plc-class-sort" class="bricks-svg-wrapper bricksbender-plc-class-sort" data-balloon="Automatic Class Sorting" data-balloon-pos="bottom-right">
+        <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" class="bricks-svg icon icon-tabler icons-tabler-outline icon-tabler-reorder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M17 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 11v-3a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v3" /><path d="M16.5 8.5l2.5 2.5l2.5 -2.5" /></svg>    
+    </span>
 `).querySelector('#bricksbender-plc-class-sort');
 containerActionButtons.appendChild(classSortButton);
 
@@ -304,8 +311,14 @@ function hoverPreviewProvider() {
 
     let detectedMarkWordElement = null;
 
+    const hitContainerEl = document.querySelector('.hit-container');
+
+    if (hitContainerEl === null) {
+        return;
+    }
+
     // when mouse are entering the `.hit-container` element, get the coordinates of the mouse and check if the mouse is hovering the `mark` element
-    document.querySelector('.hit-container').addEventListener('mousemove', function (event) {
+    hitContainerEl.addEventListener('mousemove', function (event) {
         const x = event.clientX;
         const y = event.clientY;
 
@@ -382,7 +395,7 @@ function hoverPreviewProvider() {
     });
 
     // on mouse leave the `.hit-container` element, hide all tippy
-    document.querySelector('.hit-container').addEventListener('mouseleave', function (event) {
+    hitContainerEl.addEventListener('mouseleave', function (event) {
         someTippyIsVisible = false;
 
         registeredTippyElements.forEach((tippyInstance) => {

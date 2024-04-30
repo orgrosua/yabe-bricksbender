@@ -26,12 +26,12 @@ class BRICKSBENDER
     /**
      * @var string
      */
-    public const VERSION = '1.0.10';
+    public const VERSION = '1.0.11';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10010;
+    public const VERSION_ID = 10011;
 
     /**
      * @var int
@@ -46,7 +46,7 @@ class BRICKSBENDER
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 10;
+    public const RELEASE_VERSION = 11;
 
     /**
      * @var string
