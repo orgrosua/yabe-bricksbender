@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -53,8 +53,12 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
+= 1.0.12 =
+* **New**: [html2bricks] Added the Paste button on the Structure panel header allowing to paste without needing selecting the element first.
+* **Fix**: [plain-classes] Freezed when moving the cursor to any line of the plain classes.
+
 = 1.0.11 =
-* **Improve**: Reduce the plugin file size.
+* **Improve**: Reduce the size of plugin file.
 
 = 1.0.10 =
 * **Fix**: [plain-classes] revert the Open the class suggestion on text selection [v1.0.6].

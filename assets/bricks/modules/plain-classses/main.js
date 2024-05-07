@@ -8,7 +8,6 @@
  */
 
 import './style.scss';
-// import 'tippy.js/dist/tippy.css'; // optional for styling
 
 import { logger } from '../../logger.js';
 
@@ -318,7 +317,7 @@ function hoverPreviewProvider() {
     }
 
     // when mouse are entering the `.hit-container` element, get the coordinates of the mouse and check if the mouse is hovering the `mark` element
-    hitContainerEl.addEventListener('mousemove', function (event) {
+    hitContainerEl.addEventListener('mousemove', async function (event) {
         const x = event.clientX;
         const y = event.clientY;
 
@@ -395,7 +394,7 @@ function hoverPreviewProvider() {
     });
 
     // on mouse leave the `.hit-container` element, hide all tippy
-    hitContainerEl.addEventListener('mouseleave', function (event) {
+    hitContainerEl.addEventListener('mouseleave', async function (event) {
         someTippyIsVisible = false;
 
         registeredTippyElements.forEach((tippyInstance) => {
@@ -478,62 +477,6 @@ classSortButton.addEventListener('click', function (e) {
     brxGlobalProp.$_activeElement.value.settings._cssClasses = textInput.value;
     onTextInputChanges();
 });
-
-
-// function truncateText(text) {
-//     // character to find: non-alphanumeric characterr, `[`, `]`, `'`, `#`, `"` and space
-//     const regex = /[^a-zA-Z0-9\[\]'"#\s]/g;
-
-//     // find all
-//     const match = text.match(regex);
-
-//     // if match is not found, return the original text
-//     if (!match) return text;
-
-//     // find the last index of the match
-//     const lastIndex = text.lastIndexOf(match[match.length - 1]);
-
-//     // truncate the text
-//     return text.slice(0, lastIndex + 1);
-// }
-
-// textInput.addEventListener('mouseup', function (e) {
-//     let selectedText = textInput.value.substring(textInput.selectionStart, textInput.selectionEnd);
-
-//     let trimedText = selectedText.trim();
-
-//     // no selected text
-//     if (trimedText.length === 0) {
-//         return;
-//     }
-
-//     textInput.setSelectionRange(textInput.selectionStart, textInput.selectionStart + selectedText.trimEnd().length);
-
-//     // reselect the start text to the left before the first space. reselect the end text to the right after the before space
-//     let start = textInput.selectionStart;
-//     let end = textInput.selectionEnd;
-
-//     while (start > 0 && textInput.value[start - 1] !== ' ') {
-//         start--;
-//     }
-
-//     while (end < textInput.value.length && textInput.value[end] !== ' ') {
-//         end++;
-//     }
-
-//     textInput.setSelectionRange(start, end);
-//     selectedText = textInput.value.substring(textInput.selectionStart, textInput.selectionEnd);
-
-//     let trunctedText = truncateText(selectedText);
-
-//     textInput.setSelectionRange(end, end);
-
-//     tribute.current.element = textInput;
-//     tribute.current.collection = tribute.collection[0];
-//     tribute.current.mentionText = trunctedText;
-
-//     tribute.showMenuFor(textInput);
-// });
 
 function previewAddClass(className) {
     const elementNode = brxIframeGlobalProp.$_getElementNode(brxIframeGlobalProp.$_activeElement.value);
