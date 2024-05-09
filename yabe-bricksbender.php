@@ -7,7 +7,7 @@
  * Plugin Name:         Yabe Bricksbender
  * Plugin URI:          https://bricksbender.yabe.land
  * Description:         The Bricks builder extension
- * Version:             1.0.12
+ * Version:             1.0.13
  * Requires at least:   6.0
  * Requires PHP:        7.4
  * Author:              Rosua

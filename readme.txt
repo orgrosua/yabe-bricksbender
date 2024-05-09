@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -52,6 +52,10 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 
 == Changelog ==
+
+= 1.0.13 =
+* **Change**: [plain-classes] Revert the "Hover the Class Name to preview the generated CSS code" feature that introduced in v1.0.8. It's not working as expected and causing performance issues. We will revisit this feature in the future release
+* **Change**: [plain-classes] Revert the "Colorized background of the class based on the breakpoint/screen size" feature that introduced in v1.0.8. It's not working as expected and causing performance issues. We will revisit this feature in the future release
 
 = 1.0.12 =
 * **New**: [html2bricks] Added the Paste button on the Structure panel header allowing to paste without needing selecting the element first.

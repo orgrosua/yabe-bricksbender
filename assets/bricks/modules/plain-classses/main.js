@@ -294,10 +294,11 @@ function onTextInputChanges() {
     });
 };
 
-textInput.addEventListener('highlights-updated', function (e) {
-    colorizeBackground();
-    hoverPreviewProvider();
-});
+// Disabled until the feature is stable
+// textInput.addEventListener('highlights-updated', function (e) {
+//     colorizeBackground();
+//     hoverPreviewProvider();
+// });
 
 function hoverPreviewProvider() {
     if (brxIframe.contentWindow.siul?.loaded?.module?.classNameToCss !== true) {
