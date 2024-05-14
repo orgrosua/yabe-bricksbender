@@ -68,5 +68,15 @@ class Cache
          * @see https://docs.litespeedtech.com/lscache/lscwp/api/#purge-all-existing-caches
          */
         do_action('litespeed_purge_all');
+
+        /**
+         * SG Optimizer
+         * @see https://plugins.trac.wordpress.org/browser/sg-cachepress/trunk/core/Supercacher/Supercacher.php
+         * @see https://plugins.trac.wordpress.org/browser/sg-cachepress/trunk/core/File_Cacher/File_Cacher.php
+         */
+        if (class_exists('\SiteGround_Optimizer\Supercacher\Supercacher')) {
+            \SiteGround_Optimizer\Supercacher\Supercacher::purge_cache();
+            \SiteGround_Optimizer\File_Cacher\File_Cacher::get_instance()->purge_everything();
+        }
     }
 }

@@ -16,14 +16,9 @@ namespace Yabe\Bricksbender\Utils;
 use BRICKSBENDER;
 
 /**
- * WordPress admin notice manager.
+ * Manage the plugin's notices for the wp-admin page.
  *
- * @since 1.0.0
- *
- * @method static void success(string $message, ?string $key = null, bool $unique = false) Add a success notice.
- * @method static void info(string $message, ?string $key = null, bool $unique = false) Add an info notice.
- * @method static void warning(string $message, ?string $key = null, bool $unique = false) Add a warning notice.
- * @method static void error(string $message, ?string $key = null, bool $unique = false) Add an error notice.
+ * @author Joshua Gugun Siagian <suabahasa@gmail.com>
  */
 class Notice
 {
@@ -48,16 +43,22 @@ class Notice
     public const INFO = 'info';
 
     /**
-     * Add a notice by calling the method with the status name.
-     *
-     * @param string $name The status name. Must be one of the constants: ERROR, SUCCESS, WARNING, INFO.
-     * @param array  $arguments The arguments to pass to the add() method.
+     * @var string
      */
-    public static function __callStatic($name, $arguments): void
+    public const OPTION_NAME = BRICKSBENDER::WP_OPTION . '_notices';
+
+    /**
+     * Get lists of notices.
+     */
+    public static function get_lists(?bool $purge = true): array
     {
-        if (in_array($name, [self::ERROR, self::SUCCESS, self::WARNING, self::INFO], true)) {
-            self::add($name, ...$arguments);
+        $notices = get_option(self::OPTION_NAME, []);
+
+        if ($purge) {
+            update_option(self::OPTION_NAME, []);
         }
+
+        return $notices;
     }
 
     /**
@@ -66,62 +67,39 @@ class Notice
      */
     public static function admin_notices(): void
     {
-        $messages = static::get_lists();
+        $messages = self::get_lists();
         if ($messages && is_array($messages)) {
             foreach ($messages as $message) {
                 echo sprintf(
                     '<div class="notice notice-%s is-dismissible %s">%s</div>',
-                    esc_html($message['status']),
-                    esc_html(BRICKSBENDER::WP_OPTION),
-                    esc_html($message['message'])
+                    $message['status'],
+                    self::OPTION_NAME,
+                    $message['message']
                 );
             }
         }
     }
 
-    /**
-     * Get lists of notices.
-     *
-     * @param bool $purge If true, the notices will be purged after being retrieved.
-     * @return array The list of notices.
-     */
-    public static function get_lists(?bool $purge = true): array
-    {
-        $notices = get_option(BRICKSBENDER::WP_OPTION, []);
-
-        if ($purge) {
-            update_option(BRICKSBENDER::WP_OPTION, []);
-        }
-
-        return $notices;
-    }
-
-    /**
-     * Add a notice.
-     *
-     * @param string $status The status of the notice. Must be one of the constants: ERROR, SUCCESS, WARNING, INFO.
-     * @param string $message The message to display.
-     * @param null|string $key The key to use to identify the notice. If not provided, the notice will be added without a key or sequence number.
-     * @param bool $unique If true, the notice will be added only if it is not already in the list of notices.
-     */
     public static function add(string $status, string $message, ?string $key = null, bool $unique = false): void
     {
-        if (! in_array($status, [self::ERROR, self::SUCCESS, self::WARNING, self::INFO], true)) {
-            return;
-        }
-
-        $notices = get_option(BRICKSBENDER::WP_OPTION, []);
+        $notices = get_option(self::OPTION_NAME, []);
 
         $payload = [
             'status' => $status,
             'message' => $message,
         ];
 
-        if ($unique && $key === null && in_array([
-            'status' => $status,
-            'message' => $message,
-        ], $notices, true)) {
-            return;
+        if ($unique) {
+            if ($key && isset($notices[$key])) {
+                return;
+            }
+
+            if (in_array([
+                'status' => $status,
+                'message' => $message,
+            ], $notices, true)) {
+                return;
+            }
         }
 
         if ($key) {
@@ -130,6 +108,46 @@ class Notice
             $notices[] = $payload;
         }
 
-        update_option(BRICKSBENDER::WP_OPTION, $notices);
+        update_option(self::OPTION_NAME, $notices);
+    }
+
+    /**
+     * Add bulk notices.
+     *
+     * @param string|array $messages a message or an array of messages to add.
+     */
+    public static function adds(string $status, $messages): void
+    {
+        if (! is_array($messages)) {
+            $messages = [$messages];
+        }
+
+        foreach ($messages as $message) {
+            if (! is_array($message)) {
+                self::add($status, $message);
+            } else {
+                self::add($status, ...$message);
+            }
+        }
+    }
+
+    public static function success(string $message, ?string $key = null, bool $unique = false): void
+    {
+        self::add(self::SUCCESS, ...func_get_args());
+    }
+
+    public static function warning(string $message, ?string $key = null, bool $unique = false): void
+    {
+        self::add(self::WARNING, ...func_get_args());
+    }
+
+    public static function info(string $message, ?string $key = null, bool $unique = false): void
+    {
+        self::add(self::INFO, ...func_get_args());
+    }
+
+    public static function error(string $message, ?string $key = null, bool $unique = false): void
+    {
+        self::add(self::ERROR, ...func_get_args());
     }
 }
