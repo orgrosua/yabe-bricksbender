@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Yabe\Bricksbender\Elements\AlpineJS;
 
 use Bricks\Element;
-use BRICKSBENDER;
 use Yabe\Bricksbender\Elements\ElementInterface;
 
 /**
@@ -58,11 +57,6 @@ class Runtime extends Element implements ElementInterface
     public function get_label()
     {
         return esc_html__('Alpine.js Runtime', 'yabe-bricksbender');
-    }
-
-    public function __construct()
-    {
-        parent::__construct();        
     }
 
     public function set_control_groups()

@@ -18,7 +18,10 @@ xTemplates.forEach(element => {
         element.innerHTML = element.innerHTML.replace('<contenteditable', `<contenteditable ${bindTmpl}`);
     }
 
-    if (element.id === 'tmpl-bricks-element-heading') {
+    if (
+        element.id === 'tmpl-bricks-element-heading'
+        // || element.id === 'tmpl-bricks-element-bricksbender-alpinejs-container'
+    ) {
         element.innerHTML = element.innerHTML.replace('<component', `<component ${bindTmpl}`);
     }
 });

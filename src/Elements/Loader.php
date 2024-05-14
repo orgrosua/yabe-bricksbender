@@ -101,6 +101,7 @@ class Loader
 
 		// Load abstract element base class
 		require_once BRICKS_PATH . 'includes/elements/base.php';
+		require_once BRICKS_PATH . 'includes/elements/container.php';
 
         foreach ($finder as $file) {
             $element_file = $file->getPathname();
