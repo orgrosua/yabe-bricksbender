@@ -53,6 +53,55 @@ class Lottie extends Element implements ElementInterface
 
     public function render()
     {
+        $source = $this->settings['source'] ?? 'file';
+
+        if ($source === 'file' && !empty($this->settings['file']['id'])) {
+            $this->set_attribute(
+                '_root',
+                'src',
+                wp_get_attachment_url($this->settings['file']['id'])
+            );
+        } else {
+            $this->set_attribute(
+                '_root',
+                'src',
+                $this->settings['external'] ?? 'https://assets-v2.lottiefiles.com/a/e25360fe-1150-11ee-9d43-2f8655b815bb/xSk6HtgPaN.lottie'
+            );
+        }
+
+        // autoplay
+        if (!isset($this->settings['trigger']) || $this->settings['trigger'] === 'autoplay') {
+            $this->set_attribute(
+                '_root',
+                'autoplay',
+                'true'
+            );
+        }
+
+        // loop
+        if ($this->settings['loop'] ?? false) {
+            $this->set_attribute(
+                '_root',
+                'loop',
+                'true'
+            );
+        }
+
+        // speed
+        $this->set_attribute(
+            '_root',
+            'speed',
+            $this->settings['speed'] ?? 1
+        );
+
+        // mode
+        $this->set_attribute(
+            '_root',
+            'mode',
+            $this->settings['mode'] ?? 'forward'
+        );
+
+
         echo "<dotlottie-wc {$this->render_attributes('_root')}></dotlottie-wc>";
     }
 
@@ -160,7 +209,6 @@ class Lottie extends Element implements ElementInterface
             'description' => esc_html__('Animation play mode.', 'yabe-bricksbender'),
         ];
 
-        // loop
         $this->controls['loop'] = [
             'label' => esc_html__('Loop', 'yabe-bricksbender'),
             'type' => 'checkbox',
@@ -169,7 +217,6 @@ class Lottie extends Element implements ElementInterface
             'description' => esc_html__('Determines if the animation should loop.', 'yabe-bricksbender'),
         ];
 
-        // speed
         $this->controls['speed'] = [
             'label' => esc_html__('Animation Speed', 'yabe-bricksbender'),
             'type' => 'number',
