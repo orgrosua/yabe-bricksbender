@@ -15,6 +15,8 @@ namespace Yabe\Bricksbender\Elements\AlpineJS;
 
 use Bricks\Element;
 use Yabe\Bricksbender\Elements\ElementInterface;
+use Yabe\Bricksbender\Utils\AssetVite;
+use Yabe\Bricksbender\Utils\Common;
 
 /**
  * @since 1.0.0
@@ -97,9 +99,10 @@ class Runtime extends Element implements ElementInterface
 
     public function enqueue_scripts()
     {
-        if (bricks_is_builder_main()) {
-            wp_enqueue_script('ybr-alpinejs-runtime', plugins_url('/runtime.js', __FILE__), [], null, [
-                'strategy' => 'defer',
+        if (bricks_is_builder_iframe()) {
+            AssetVite::get_instance()->enqueue_asset('assets/elements/alpinejs/runtime.js', [
+                'handle' => 'ybr-alpinejs-runtime',
+                'in_footer' => true,
             ]);
         } else {
             foreach ($this->get_runtime_assets() as $asset) {
@@ -110,7 +113,7 @@ class Runtime extends Element implements ElementInterface
 
     public function render()
     {
-        if (bricks_is_builder()) {
+        if (bricks_is_builder() || Common::is_request('rest') || Common::is_request('ajax')) {
             $this->set_attribute(
                 '_root',
                 'data-ybr-alpinejs-runtime-options',
@@ -120,9 +123,7 @@ class Runtime extends Element implements ElementInterface
                     ]
                 )
             );
-        }
 
-        if (bricks_is_builder()) {
             echo "<div {$this->render_attributes('_root')}></div>";
         }
     }

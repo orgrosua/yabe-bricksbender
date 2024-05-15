@@ -6,7 +6,7 @@ function ybrAlpinejsRuntime() {
             const existScript = document.getElementById(asset.handle)
 
             if (existScript) {
-                if (existScript.dataset.version === asset.version) {
+                if (existScript.id !== 'ybr-alpinejs-core' && existScript.dataset.version === asset.version) {
                     return;
                 }
 
@@ -18,21 +18,12 @@ function ybrAlpinejsRuntime() {
             script.src = asset.src;
             script.defer = true;
             script.dataset.version = asset.version;
-            script.addEventListener('load', function () {});
+            script.addEventListener('load', () => {});
 
             document.head.appendChild(script);
         });
     });
 }
 
-(async () => {
-    while (!document.querySelector('.brx-body')?.__vue_app__) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-    }
-
-    while (!document.getElementById('bricks-builder-iframe')?.contentDocument.querySelector('.brx-body')?.__vue_app__) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-    }
-
-    ybrAlpinejsRuntime();
-})();
+// expose the function to the global scope
+window.ybrAlpinejsRuntime = ybrAlpinejsRuntime;

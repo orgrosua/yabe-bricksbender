@@ -1,3 +1,4 @@
+import './styles/main.scss';
 import { logger } from './logger.js';
 
 logger('Loading...');
