@@ -128,9 +128,6 @@ class Runtime extends Element implements ElementInterface
         }
     }
 
-    /**
-     * @inheritDoc
-     */
     public function set_controls()
     {
         $npm_versions = $this->npm_versions();

@@ -1,4 +1,7 @@
 function ybrAlpinejsRuntime() {
+    // trace who is calling this function
+    console.trace('ybrAlpinejsRuntime');
+
     bricksQuerySelectorAll(document, '.brxe-ybr_alpinejs_runtime').forEach(function (element) {
         const runtimeAssets = JSON.parse(element.dataset.ybrAlpinejsRuntimeOptions).assets;
 

@@ -2,7 +2,7 @@
 Contributors: suabahasa, rosua
 Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 6.5
 Stable tag: 1.0.13
 Requires PHP: 7.4

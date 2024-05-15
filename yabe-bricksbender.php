@@ -8,7 +8,7 @@
  * Plugin URI:          https://bricksbender.yabe.land
  * Description:         The Bricks builder extension
  * Version:             1.0.13
- * Requires at least:   6.0
+ * Requires at least:   6.5
  * Requires PHP:        7.4
  * Author:              Rosua
  * Author URI:          https://yabe.land
