@@ -15,9 +15,10 @@ namespace Yabe\Bricksbender\Elements\Lottie;
 
 use Bricks\Element;
 use Yabe\Bricksbender\Elements\ElementInterface;
+use Yabe\Bricksbender\Utils\AssetVite;
 
 /**
- * @since 1.0.0
+ * @since 2.0.0
  */
 class Lottie extends Element implements ElementInterface
 {
@@ -49,6 +50,11 @@ class Lottie extends Element implements ElementInterface
     public function enqueue_scripts()
     {
         wp_enqueue_script_module('ybr-lottie-player', 'https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js', [], null);
+
+        AssetVite::get_instance()->enqueue_asset('assets/elements/lottie/main.js', [
+            'handle' => 'ybr-lottie-main',
+            'in_footer' => true,
+        ]);
     }
 
     public function render()
@@ -101,6 +107,12 @@ class Lottie extends Element implements ElementInterface
             $this->settings['mode'] ?? 'forward'
         );
 
+        // available settings
+        $this->set_attribute(
+            '_root',
+            'data-ybr-lottie-settings',
+            wp_json_encode($this->settings)
+        );
 
         echo "<dotlottie-wc {$this->render_attributes('_root')}></dotlottie-wc>";
     }

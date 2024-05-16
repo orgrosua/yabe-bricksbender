@@ -1,7 +1,4 @@
 function ybrAlpinejsRuntime() {
-    // trace who is calling this function
-    console.trace('ybrAlpinejsRuntime');
-
     bricksQuerySelectorAll(document, '.brxe-ybr_alpinejs_runtime').forEach(function (element) {
         const runtimeAssets = JSON.parse(element.dataset.ybrAlpinejsRuntimeOptions).assets;
 
@@ -21,12 +18,11 @@ function ybrAlpinejsRuntime() {
             script.src = asset.src;
             script.defer = true;
             script.dataset.version = asset.version;
-            script.addEventListener('load', () => {});
 
             document.head.appendChild(script);
         });
     });
 }
 
-// expose the function to the global scope
+// expose ybrAlpinejsRuntime to the global scope
 window.ybrAlpinejsRuntime = ybrAlpinejsRuntime;

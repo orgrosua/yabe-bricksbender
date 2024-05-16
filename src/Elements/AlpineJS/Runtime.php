@@ -19,7 +19,7 @@ use Yabe\Bricksbender\Utils\AssetVite;
 use Yabe\Bricksbender\Utils\Common;
 
 /**
- * @since 1.0.0
+ * @since 2.0.0
  */
 class Runtime extends Element implements ElementInterface
 {

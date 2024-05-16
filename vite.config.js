@@ -12,6 +12,7 @@ export default defineConfig({
 
                 // Elements
                 'elements/alpinejs/runtime': 'assets/elements/alpinejs/runtime.js',
+                'elements/lottie': 'assets/elements/lottie/main.js',
 
             },
             outDir: 'build',
