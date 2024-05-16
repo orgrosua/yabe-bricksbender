@@ -1,9 +1,3 @@
-import { debounce, last } from 'lodash-es';
-
-const debounceSetFrame = debounce((dotLottie, targetFrame) => {
-    dotLottie.setFrame(targetFrame);
-}, 10);
-
 function ybrLottie() {
     bricksQuerySelectorAll(document, '.brxe-ybr_lottie').forEach(function (lottieEl) {
         const settings = JSON.parse(lottieEl.dataset.ybrLottieSettings);
