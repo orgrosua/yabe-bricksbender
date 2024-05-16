@@ -26,17 +26,17 @@ class BRICKSBENDER
     /**
      * @var string
      */
-    public const VERSION = '1.0.13';
+    public const VERSION = '2.0.0-DEV';
 
     /**
      * @var int
      */
-    public const VERSION_ID = 10013;
+    public const VERSION_ID = 20000;
 
     /**
      * @var int
      */
-    public const MAJOR_VERSION = 1;
+    public const MAJOR_VERSION = 2;
 
     /**
      * @var int
@@ -46,12 +46,12 @@ class BRICKSBENDER
     /**
      * @var int
      */
-    public const RELEASE_VERSION = 13;
+    public const RELEASE_VERSION = 0;
 
     /**
      * @var string
      */
-    public const EXTRA_VERSION = '';
+    public const EXTRA_VERSION = 'DEV';
 
     /**
      * @var string

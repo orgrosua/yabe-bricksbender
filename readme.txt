@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
 Requires at least: 6.5
 Tested up to: 6.5
-Stable tag: 1.0.13
+Stable tag: 2.0.0-DEV
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -52,6 +52,13 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 
 == Changelog ==
+
+= 2.0.0 =
+* **New**: [elements] Alpine.js Runtime and Alpine.js Container.
+* **New**: [elements] Lottie.
+* **New**: [elements] Rive.
+* **New**: [elements] GSAP Runtime.
+* **Change**: [modules] Plain Classes and HTML to Bricks are removed from the plugin. They are now available on the [Yabe Siul](https://siul.yabe.land) plugin.
 
 = 1.0.13 =
 * **Change**: [plain-classes] Revert the "Hover the Class Name to preview the generated CSS code" feature that introduced in v1.0.8. It's not working as expected and causing performance issues. We will revisit this feature in the future release
