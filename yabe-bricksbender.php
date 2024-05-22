@@ -37,7 +37,7 @@ if (file_exists(__DIR__ . '/vendor/scoper-autoload.php')) {
 $requirement = new Requirement();
 $requirement
     ->php('7.4')
-    ->wp('6.0')
+    ->wp('6.5')
     ->theme('bricks', '1.9.6.1');
 
 if ($requirement->met()) {

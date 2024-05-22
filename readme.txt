@@ -21,19 +21,18 @@ Yabe Bricksbender is a plugin that enhances the Bricks editor with functionaliti
 
 Yabe Bricksbender is packed full of modules designed to streamline your workflow.
 
-✅ **Plain classes**
+- **Elements Manager**: Switch on/off the elements you want to use in the Bricks editor.
+- **HTML to Bricks**: Convert HTML to Bricks elements.
+- **Plain Classes**: Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database
+- **OpenAI Assistant**: AI integration that do many tasks in the Bricks editor.
 
-Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database.
+### Elements
 
-Features:
-- **Auto-complete**: Intelligent suggestions for [Tailwind CSS](https://siul.yabe.land/) class names.
-- **Hover Class Name**: Hover the Class Name to preview the generated CSS code.
-- **Automatic Class Sorting**: Sort the classes based on the Tailwind CSS [official recommendation](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
-- **Quick class preview**: Preview CSS classes in the Bricks editor by hovering/navigating without adding.
-
-✅ **HTML to Bricks**
-
-Convert HTML to Bricks elements. Easily convert Tailwind CSS components to Bricks elements.
+- **Alpine.js Runtime**: Add Alpine.js runtime to your Bricks editor.
+- **Alpine.js Container**: The element that supports Alpine.js directives.
+- **Lottie**: Add Lottie animation to your Bricks editor.
+- **Rive**: Add Rive animation to your Bricks editor.
+- **GSAP Runtime**: Add GSAP runtime to your Bricks editor.
 
 
 Visit [our website](https://bricksbender.yabe.land) for more information.

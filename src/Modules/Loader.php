@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Yabe\Bricksbender\Module;
+namespace Yabe\Bricksbender\Modules;
 
 use Exception;
 use ReflectionClass;
