@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Yabe\Bricksbender\Core;
 
 use Exception;
+use Yabe\Bricksbender\Elements\Loader as ElementsLoader;
 
 /**
  * @since 1.0.0
@@ -68,5 +69,7 @@ class Runtime
     public function init()
     {
         BricksEditor::get_instance()->init();
+        ElementsLoader::get_instance()->register_elements();
+
     }
 }

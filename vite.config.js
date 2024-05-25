@@ -9,6 +9,11 @@ export default defineConfig({
             input: {
                 bricks: 'assets/bricks/main.js',
                 admin: 'assets/admin/main.js',
+
+                // Elements
+                'elements/alpinejs/runtime': 'assets/elements/alpinejs/runtime.js',
+                'elements/lottie': 'assets/elements/lottie/main.js',
+
             },
             outDir: 'build',
         }),

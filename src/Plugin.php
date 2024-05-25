@@ -19,7 +19,7 @@ use WP_Upgrader;
 use Yabe\Bricksbender\Admin\AdminPage;
 use Yabe\Bricksbender\Api\Router as ApiRouter;
 use Yabe\Bricksbender\Core\Runtime;
-use Yabe\Bricksbender\Module\Loader as ModuleLoader;
+use Yabe\Bricksbender\Modules\Loader as ModulesLoader;
 use Yabe\Bricksbender\Utils\Notice;
 
 /**
@@ -156,7 +156,7 @@ final class Plugin
     {
         do_action('a!yabe/bricksbender/plugin:plugins_loaded.start');
 
-        ModuleLoader::get_instance()->register_modules();
+        ModulesLoader::get_instance()->register_modules();
 
         // new ApiRouter();
 

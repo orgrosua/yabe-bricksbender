@@ -2,9 +2,9 @@
 Contributors: suabahasa, rosua
 Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 6.5
-Stable tag: 1.0.13
+Stable tag: 2.0.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -21,19 +21,18 @@ Yabe Bricksbender is a plugin that enhances the Bricks editor with functionaliti
 
 Yabe Bricksbender is packed full of modules designed to streamline your workflow.
 
-✅ **Plain classes**
+- **Elements Manager**: Switch on/off the elements you want to use in the Bricks editor.
+- **HTML to Bricks** [Temp not available]: Convert HTML to Bricks elements.
+- **Plain Classes** [Temp not available]: Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database
+- **OpenAI Assistant** [Soon]: AI integration that do many tasks in the Bricks editor.
 
-Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database.
+### Elements
 
-Features:
-- **Auto-complete**: Intelligent suggestions for [Tailwind CSS](https://siul.yabe.land/) class names.
-- **Hover Class Name**: Hover the Class Name to preview the generated CSS code.
-- **Automatic Class Sorting**: Sort the classes based on the Tailwind CSS [official recommendation](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
-- **Quick class preview**: Preview CSS classes in the Bricks editor by hovering/navigating without adding.
-
-✅ **HTML to Bricks**
-
-Convert HTML to Bricks elements. Easily convert Tailwind CSS components to Bricks elements.
+- **Alpine.js Runtime**: Add Alpine.js runtime to your Bricks editor.
+- **Alpine.js Container**: The element that supports Alpine.js directives.
+- **Lottie**: Add Lottie animation to your Bricks editor.
+- **Rive** [Soon]: Add Rive animation to your Bricks editor.
+- **GSAP Runtime** [Soon]: Add GSAP runtime to your Bricks editor.
 
 
 Visit [our website](https://bricksbender.yabe.land) for more information.
@@ -52,6 +51,15 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 
 == Changelog ==
+
+= UNRELEASED =
+* **New**: [elements] Rive.
+* **New**: [elements] GSAP Runtime.
+
+= 2.0.0 =
+* **New**: [elements] Alpine.js Runtime and Alpine.js Container.
+* **New**: [elements] Lottie.
+* **Change**: [modules] Plain Classes and HTML to Bricks are removed from the plugin. They are now available on the [Yabe Siul](https://siul.yabe.land) plugin.
 
 = 1.0.13 =
 * **Change**: [plain-classes] Revert the "Hover the Class Name to preview the generated CSS code" feature that introduced in v1.0.8. It's not working as expected and causing performance issues. We will revisit this feature in the future release

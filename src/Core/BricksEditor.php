@@ -69,7 +69,7 @@ class BricksEditor
 
     public function init()
     {
-        add_action('wp_enqueue_scripts', fn () => $this->editor_assets(), 1_000_000);
+        add_action('wp_enqueue_scripts', fn () => $this->editor_assets(), 1);
     }
 
     public function editor_assets()
@@ -77,6 +77,8 @@ class BricksEditor
         if (!function_exists('bricks_is_builder_main') || !\bricks_is_builder_main()) {
             return;
         }
+
+        wp_enqueue_style('tabler-icons', 'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css');
 
         do_action('a!yabe/bricksbender/core/brickseditor:editor_assets.start');
 
