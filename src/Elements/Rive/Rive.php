@@ -19,30 +19,30 @@ use Yabe\Bricksbender\Elements\ElementInterface;
 /**
  * @since 1.0.0
  */
-class Rive extends Element implements ElementInterface
-{
-    /**
-     * @var string
-     */
-    public $category = 'Bricksbender — Animation';
+// class Rive extends Element implements ElementInterface
+// {
+//     /**
+//      * @var string
+//      */
+//     public $category = 'Bricksbender — Animation';
 
-    /**
-     * @var string
-     */
-    public $name = 'ybr_rive';
+//     /**
+//      * @var string
+//      */
+//     public $name = 'ybr_rive';
 
-    /**
-     * @var string
-     */
-    public $icon = 'ybr ybr-editor ybr-element-rive';
+//     /**
+//      * @var string
+//      */
+//     public $icon = 'ybr ybr-editor ybr-element-rive';
 
-    public function get_identifier(): string
-    {
-        return 'ybr_rive';
-    }
+//     public function get_identifier(): string
+//     {
+//         return 'ybr_rive';
+//     }
 
-    public function get_label()
-    {
-        return esc_html__('Rive', 'yabe-bricksbender');
-    }
-}
+//     public function get_label()
+//     {
+//         return esc_html__('Rive', 'yabe-bricksbender');
+//     }
+// }

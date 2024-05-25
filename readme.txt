@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
 Requires at least: 6.5
 Tested up to: 6.5
-Stable tag: 2.0.0-DEV
+Stable tag: 2.0.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -22,17 +22,17 @@ Yabe Bricksbender is a plugin that enhances the Bricks editor with functionaliti
 Yabe Bricksbender is packed full of modules designed to streamline your workflow.
 
 - **Elements Manager**: Switch on/off the elements you want to use in the Bricks editor.
-- **HTML to Bricks**: Convert HTML to Bricks elements.
-- **Plain Classes**: Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database
-- **OpenAI Assistant**: AI integration that do many tasks in the Bricks editor.
+- **HTML to Bricks** [Temp not available]: Convert HTML to Bricks elements.
+- **Plain Classes** [Temp not available]: Add the ability to write plain CSS classes to Bricks elements without adding the class to the Global Class database
+- **OpenAI Assistant** [Soon]: AI integration that do many tasks in the Bricks editor.
 
 ### Elements
 
 - **Alpine.js Runtime**: Add Alpine.js runtime to your Bricks editor.
 - **Alpine.js Container**: The element that supports Alpine.js directives.
 - **Lottie**: Add Lottie animation to your Bricks editor.
-- **Rive**: Add Rive animation to your Bricks editor.
-- **GSAP Runtime**: Add GSAP runtime to your Bricks editor.
+- **Rive** [Soon]: Add Rive animation to your Bricks editor.
+- **GSAP Runtime** [Soon]: Add GSAP runtime to your Bricks editor.
 
 
 Visit [our website](https://bricksbender.yabe.land) for more information.
@@ -52,11 +52,13 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
+= UNRELEASED =
+* **New**: [elements] Rive.
+* **New**: [elements] GSAP Runtime.
+
 = 2.0.0 =
 * **New**: [elements] Alpine.js Runtime and Alpine.js Container.
 * **New**: [elements] Lottie.
-* **New**: [elements] Rive.
-* **New**: [elements] GSAP Runtime.
 * **Change**: [modules] Plain Classes and HTML to Bricks are removed from the plugin. They are now available on the [Yabe Siul](https://siul.yabe.land) plugin.
 
 = 1.0.13 =

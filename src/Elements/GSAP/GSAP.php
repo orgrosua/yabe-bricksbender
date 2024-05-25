@@ -19,30 +19,30 @@ use Yabe\Bricksbender\Elements\ElementInterface;
 /**
  * @since 1.0.0
  */
-class GSAP extends Element implements ElementInterface
-{
-    /**
-     * @var string
-     */
-    public $category = 'Bricksbender — Animation';
+// class GSAP extends Element implements ElementInterface
+// {
+//     /**
+//      * @var string
+//      */
+//     public $category = 'Bricksbender — Animation';
 
-    /**
-     * @var string
-     */
-    public $name = 'ybr_gsap';
+//     /**
+//      * @var string
+//      */
+//     public $name = 'ybr_gsap';
 
-    /**
-     * @var string
-     */
-    public $icon = 'ybr ybr-editor ybr-element-gsap';
+//     /**
+//      * @var string
+//      */
+//     public $icon = 'ybr ybr-editor ybr-element-gsap';
 
-    public function get_identifier(): string
-    {
-        return 'ybr_gsap';
-    }
+//     public function get_identifier(): string
+//     {
+//         return 'ybr_gsap';
+//     }
 
-    public function get_label()
-    {
-        return esc_html__('GSAP Runtime', 'yabe-bricksbender');
-    }
-}
+//     public function get_label()
+//     {
+//         return esc_html__('GSAP Runtime', 'yabe-bricksbender');
+//     }
+// }

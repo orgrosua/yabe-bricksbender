@@ -19,30 +19,30 @@ use Yabe\Bricksbender\Elements\ElementInterface;
 /**
  * @since 1.0.0
  */
-class ThreeJS extends Element implements ElementInterface
-{
-    /**
-     * @var string
-     */
-    public $category = 'Bricksbender — Animation';
+// class ThreeJS extends Element implements ElementInterface
+// {
+//     /**
+//      * @var string
+//      */
+//     public $category = 'Bricksbender — Animation';
 
-    /**
-     * @var string
-     */
-    public $name = 'ybr_threejs';
+//     /**
+//      * @var string
+//      */
+//     public $name = 'ybr_threejs';
 
-    /**
-     * @var string
-     */
-    public $icon = 'ybr ybr-editor ybr-element-threejs';
+//     /**
+//      * @var string
+//      */
+//     public $icon = 'ybr ybr-editor ybr-element-threejs';
 
-    public function get_identifier(): string
-    {
-        return 'ybr_threejs';
-    }
+//     public function get_identifier(): string
+//     {
+//         return 'ybr_threejs';
+//     }
 
-    public function get_label()
-    {
-        return esc_html__('Three.js', 'yabe-bricksbender');
-    }
-}
+//     public function get_label()
+//     {
+//         return esc_html__('Three.js', 'yabe-bricksbender');
+//     }
+// }
