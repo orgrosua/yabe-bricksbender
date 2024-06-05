@@ -1,5 +1,23 @@
 <script setup>
+import { ref } from 'vue';
 import Logo from '../../bricksbender.svg';
+
+const askForReviewNotice = ref(null);
+const askForReview = localStorage.getItem('yabe-bricksbender-ask-for-review') ?? -1;
+const isAskForReview = ref(askForReview === -1 || (askForReview !== 'done' && askForReview !== 'never' && new Date() > new Date(askForReview)));
+const askForReviewClick = (action) => {
+    localStorage.setItem('yabe-bricksbender-ask-for-review', action);
+
+    if (action === 'done') {
+        window.open('https://wordpress.org/support/plugin/yabe-bricksbender/reviews/?filter=5/#new-post', '_blank');
+    } else if (action === 'later') {
+        const date = new Date();
+        date.setDate(date.getDate() + 7);
+        localStorage.setItem('yabe-bricksbender-ask-for-review', date);
+    }
+
+    isAskForReview.value = false;
+};
 </script>
 
 <template>
@@ -45,7 +63,8 @@ import Logo from '../../bricksbender.svg';
                 <div class="bb:1|solid|gray-20 bg:gray-5 mb:20">
                     <div class="flex flex:row mx:30">
                         <ul class="flex uppercase {bb:3|solid|black}>li:has(>.router-link-active) {fg:black}>li:has(>.router-link-active)>a align-items:baseline box-shadow:none>li>a:focus fg:gray-70>li>a fg:gray-90>li>a:hover flex-grow:1 font:12 font:semibold gap-x:28 m:0 m:0>li pb:6>li pt:20 pt:10>li px:4>li text-decoration:none>li>a">
-                            <li><a href="#/settings" class="router-link-active router-link-exact-active" aria-current="page">Settings</a></li>
+                            <li><a href="#/settings" class="" aria-current="page">Settings</a></li>
+                            <li><router-link :to="{ name: 'modules' }" activeClass="router-link-active">Modules</router-link></li>
                         </ul>
                         <div id="navbar-right-side"></div>
                     </div>
@@ -54,19 +73,28 @@ import Logo from '../../bricksbender.svg';
                 <div class="bricksbender-notice-pool b:0 mx:0">
                     <hr class="wp-header-end">
                     <!-- <WordpressNotice /> -->
+
+                    <!-- Ask for reviews -->
+                    <div v-if="isAskForReview" class="notice notice-info is-dismissible">
+                        <p>
+                            <strong>Yabe Bricksbender</strong> will always try to make you smile. If you smile, please consider giving us a <span class="fg:yellow-50">★★★★★</span> rating. It would mean a lot to us!
+                        </p>
+                        <p>
+                            <button @click="askForReviewClick('done')" class="button button-primary">
+                                <font-awesome-icon :icon="['fas', 'face-smile-hearts']" />
+                                OK, you deserve it!
+                            </button>
+                            <button @click="askForReviewClick('later')" class="button button-secondary float:right ml:8">
+                                <font-awesome-icon :icon="['fas', 'hourglass-clock']" />
+                                Later
+                            </button>
+                            <button @click="askForReviewClick('never')" class="button button-link button-link-delete float:right">Never</button>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="bricksbender-content my:20 px:20">
-                    <h2>The dashboard will be available in future updates.</h2>
-                    <br>
-                    <h3> Resources </h3>
-                    <ul>
-                        <li><a href="https://yabe.land" target="_blank">Ecosystem plugins</a></li>
-                        <li><a href="https://www.facebook.com/groups/1142662969627943" target="_blank">Community</a></li>
-                        <li><a href="https://github.com/orgrosua/yabe-bricksbender/issues" target="_blank">Feature request / Report a bug</a></li>
-                        <li><a href="https://github.com/orgrosua/yabe-bricksbender/discussions" target="_blank">Discussion</a></li>
-                        <li><a href="https://ko-fi.com/Q5Q75XSF7" target="_blank">Support plugin development</a></li>
-                    </ul>
+                    <router-view></router-view>
                 </div>
             </div>
         </div>

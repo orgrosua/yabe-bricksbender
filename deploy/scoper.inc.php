@@ -182,6 +182,9 @@ return [
             'MONTH_IN_SECONDS',
             'debugger',
 
+
+            'BRICKS_URL_ASSETS',
+            'BRICKS_PATH_ASSETS',
         ]
     ),
 

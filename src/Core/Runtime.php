@@ -69,7 +69,11 @@ class Runtime
     public function init()
     {
         BricksEditor::get_instance()->init();
-        ElementsLoader::get_instance()->register_elements();
+
+        // Postponed the action to Priority 1_000_001 to make sure it's loaded after all other elements are registered.
+        add_action('init', static function () {
+            ElementsLoader::get_instance()->register_elements();
+        }, 1_000_001);
 
     }
 }

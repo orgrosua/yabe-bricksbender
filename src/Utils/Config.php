@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Yabe\Bricksbender\Utils;
 
+use ArrayAccess;
 use Exception;
 use BRICKSBENDER;
 use Symfony\Component\PropertyAccess\Exception\AccessException;
@@ -34,9 +35,10 @@ class Config
 
     public static function propertyAccessor()
     {
-        if (! isset(self::$propertyAccessor)) {
+        if (!isset(self::$propertyAccessor)) {
             self::$propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
                 ->enableExceptionOnInvalidIndex()
+                ->enableMagicMethods()
                 ->getPropertyAccessor();
         }
 
@@ -55,7 +57,7 @@ class Config
     {
         $options = json_decode(get_option(BRICKSBENDER::WP_OPTION . '_options', '{}'), null, 512, JSON_THROW_ON_ERROR);
 
-        $options = apply_filters('f!yabe/bricksbender/api/setting/option:index_options', $options);
+        $options = apply_filters('f!yabe/bricksbender/utlis/config:options', $options);
 
         try {
             return self::propertyAccessor()->getValue($options, $path);
@@ -78,10 +80,115 @@ class Config
     {
         $options = json_decode(get_option(BRICKSBENDER::WP_OPTION . '_options', '{}'), null, 512, JSON_THROW_ON_ERROR);
 
-        $options = apply_filters('f!yabe/bricksbender/api/setting/option:index_options', $options);
+        $options = apply_filters('f!yabe/bricksbender/utlis/config:options', $options);
 
-        self::propertyAccessor()->setValue($options, $path, $value);
+        if (self::propertyAccessor()->isWritable($options, $path)) {
+            self::propertyAccessor()->setValue($options, $path, $value);
+        } else {
+            self::data_set($options, $path, $value);
+        }
 
         update_option(BRICKSBENDER::WP_OPTION . '_options', wp_json_encode($options, JSON_THROW_ON_ERROR));
+    }
+
+    /**
+     * Set an item on an array or object using dot notation.
+     *
+     * @param  mixed  $target
+     * @param  string|array  $key
+     * @param  mixed  $value
+     * @param  bool  $overwrite
+     * @return mixed
+     * 
+     * @see https://github.com/laravel/framework/blob/a84c4f41d3fb1c57684bb417b1f0858300e769d0/src/Illuminate/Collections/helpers.php#L109
+     */
+    public static function data_set(&$target, $key, $value, $overwrite = true)
+    {
+        $segments = is_array($key) ? $key : explode('.', $key);
+
+        if (($segment = array_shift($segments)) === '*') {
+            if (!self::array_accessible($target)) {
+                $target = [];
+            }
+
+            if ($segments) {
+                foreach ($target as &$inner) {
+                    self::data_set($inner, $segments, $value, $overwrite);
+                }
+            } elseif ($overwrite) {
+                foreach ($target as &$inner) {
+                    $inner = $value;
+                }
+            }
+        } elseif (self::array_accessible($target)) {
+            if ($segments) {
+                if (!self::array_exists($target, $segment)) {
+                    $target[$segment] = [];
+                }
+
+                self::data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite || !self::array_exists($target, $segment)) {
+                $target[$segment] = $value;
+            }
+        } elseif (is_object($target)) {
+            if ($segments) {
+                if (!isset($target->{$segment})) {
+                    $target->{$segment} = [];
+                }
+
+                self::data_set($target->{$segment}, $segments, $value, $overwrite);
+            } elseif ($overwrite || !isset($target->{$segment})) {
+                $target->{$segment} = $value;
+            }
+        } else {
+            $target = [];
+
+            if ($segments) {
+                self::data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite) {
+                $target[$segment] = $value;
+            }
+        }
+
+        return $target;
+    }
+
+    /**
+     * Determine if the given key exists in the provided array.
+     *
+     * @param  \ArrayAccess|array  $array
+     * @param  string|int  $key
+     * @return bool
+     * 
+     * @see https://github.com/laravel/framework/blob/a84c4f41d3fb1c57684bb417b1f0858300e769d0/src/Illuminate/Collections/Arr.php#L164
+     */
+    public static function array_exists($array, $key)
+    {
+        // if ($array instanceof Enumerable) {
+        //     return $array->has($key);
+        // }
+
+        if ($array instanceof ArrayAccess) {
+            return $array->offsetExists($key);
+        }
+
+        if (is_float($key)) {
+            $key = (string) $key;
+        }
+
+        return array_key_exists($key, $array);
+    }
+
+    /**
+     * Determine whether the given value is array accessible.
+     *
+     * @param  mixed  $value
+     * @return bool
+     * 
+     * @see https://github.com/laravel/framework/blob/a84c4f41d3fb1c57684bb417b1f0858300e769d0/src/Illuminate/Collections/Arr.php#L21
+     */
+    public static function array_accessible($value)
+    {
+        return is_array($value) || $value instanceof ArrayAccess;
     }
 }

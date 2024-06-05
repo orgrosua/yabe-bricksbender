@@ -22,4 +22,11 @@ interface ElementInterface
      * The value should be unique and URL-friendly.
      */
     public function get_identifier(): string;
+
+    /**
+     * Get the Element's label.
+     * 
+     * This label will be used on the Element's UI.
+     */
+    public function get_label();
 }

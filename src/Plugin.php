@@ -67,7 +67,7 @@ final class Plugin
      */
     public static function get_instance(): self
     {
-        if (! isset(self::$instance)) {
+        if (!isset(self::$instance)) {
             self::$instance = new self();
         }
 
@@ -142,8 +142,11 @@ final class Plugin
     {
         do_action('a!yabe/bricksbender/plugin:init_plugin.start');
 
-        // Instantiate the AdminPage class.
+        new ApiRouter();
+
         Runtime::get_instance()->init();
+
+        // Instantiate the AdminPage class.
         new AdminPage();
 
         do_action('a!yabe/bricksbender/plugin:init_plugin.end');
@@ -157,8 +160,6 @@ final class Plugin
         do_action('a!yabe/bricksbender/plugin:plugins_loaded.start');
 
         ModulesLoader::get_instance()->register_modules();
-
-        // new ApiRouter();
 
         if (is_admin()) {
             add_action('admin_notices', static fn () => Notice::admin_notices());

@@ -28,3 +28,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 config.codekit3
+
+# OS specific files
+.DS_Store

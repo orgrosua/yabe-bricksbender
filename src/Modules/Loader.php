@@ -115,6 +115,7 @@ class Loader
                 'name' => $module->get_name(),
                 'file_path' => $reflector->getFileName(),
                 'class_name' => $reflector->getName(),
+                'instanceWithoutConstructor' => $module,
             ];
         }
 
@@ -145,8 +146,6 @@ class Loader
 
     /**
      * Get the list of Modules.
-     * 
-     * @return ModuleInterface[]
      */
     public function get_modules(): array
     {

@@ -135,6 +135,8 @@ class Loader
                 'name' => $element->get_identifier(),
                 'file_path' => $reflector->getFileName(),
                 'class_name' => $reflector->getName(),
+                'label' => $element->get_label(),
+                'instanceWithoutConstructor' => $element,
             ];
         }
 
@@ -151,7 +153,7 @@ class Loader
 
         foreach ($elements as $element) {
             // Check if the Element is enabled
-            if (!Config::get(sprintf('elements.%s.enabled',  $element['name']), true)) {
+            if (!Config::get(sprintf('elements.bricksbender.%s.enabled',  $element['name']), true)) {
                 continue;
             }
 

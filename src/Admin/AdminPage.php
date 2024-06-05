@@ -66,25 +66,25 @@ class AdminPage
             'in_footer' => true,
         ]);
 
-        // wp_set_script_translations($handle, 'yabe-bricksbender');
+        wp_set_script_translations($handle, 'yabe-bricksbender');
 
-        // wp_localize_script($handle, 'bricksbender', [
-        //     '_version' => BRICKSBENDER::VERSION,
-        //     '_wpnonce' => wp_create_nonce(BRICKSBENDER::WP_OPTION),
-        //     'web_history' => self::get_page_url(),
-        //     'rest_api' => [
-        //         'nonce' => wp_create_nonce('wp_rest'),
-        //         'root' => esc_url_raw(rest_url()),
-        //         'namespace' => BRICKSBENDER::REST_NAMESPACE,
-        //         'url' => esc_url_raw(rest_url(BRICKSBENDER::REST_NAMESPACE)),
-        //     ],
-        //     'assets' => [
-        //         'url' => AssetVite::asset_base_url(),
-        //     ],
-        //     'site_meta' => [
-        //         'name' => get_bloginfo('name'),
-        //         'site_url' => get_site_url(),
-        //     ],
-        // ]);
+        wp_localize_script($handle, 'bricksbender', [
+            '_version' => BRICKSBENDER::VERSION,
+            '_wpnonce' => wp_create_nonce(BRICKSBENDER::WP_OPTION),
+            'web_history' => self::get_page_url(),
+            'rest_api' => [
+                'nonce' => wp_create_nonce('wp_rest'),
+                'root' => esc_url_raw(rest_url()),
+                'namespace' => BRICKSBENDER::REST_NAMESPACE,
+                'url' => esc_url_raw(rest_url(BRICKSBENDER::REST_NAMESPACE)),
+            ],
+            'assets' => [
+                'url' => AssetVite::asset_base_url(),
+            ],
+            'site_meta' => [
+                'name' => get_bloginfo('name'),
+                'site_url' => get_site_url(),
+            ],
+        ]);
     }
 }
