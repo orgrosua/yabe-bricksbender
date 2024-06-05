@@ -50,7 +50,7 @@ Interested in development?
 Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to get involved.
 
 
-== Changelog ==e.
+== Changelog ==
 
 = 2.0.1 =
 * **New**: [modules] Element Manager: Switch on/off the elements you want to use in the Bricks editor.
