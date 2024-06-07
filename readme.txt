@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: bricks builder, tailwind css
 Requires at least: 6.5
 Tested up to: 6.5
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -52,7 +52,7 @@ Visit the [GitHub repository](https://github.com/orgrosua/yabe-bricksbender) to 
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.0.2 =
 * **New**: [modules] Element Manager: Switch on/off the elements you want to use in the Bricks editor.
 
 = 2.0.0 =

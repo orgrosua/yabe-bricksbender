@@ -127,7 +127,7 @@ function doBulkActions() {
     switch (chosenBulkAction.value) {
         case 'deactivate':
             if (
-                confirm(__(`Are you sure you want to deactivate the selected module(s)?`, 'yabe-bricksbender'))
+                confirm(__(`Are you sure you want to deactivate the selected element(s)?`, 'yabe-bricksbender'))
             ) {
                 selectedItems.value.forEach(async (id) => {
                     const item = items.value.find((item) => item.id === id);
@@ -138,7 +138,7 @@ function doBulkActions() {
             break;
         case 'activate':
             if (
-                confirm(__(`Are you sure you want to activate the selected module(s)?`, 'yabe-bricksbender'))
+                confirm(__(`Are you sure you want to activate the selected element(s)?`, 'yabe-bricksbender'))
             ) {
                 selectedItems.value.forEach(async (id) => {
                     const item = items.value.find((item) => item.id === id);

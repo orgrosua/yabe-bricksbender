@@ -17,7 +17,7 @@ export default defineConfig({
             },
             outDir: 'build',
         }),
-        wp_scripts(),
+        // wp_scripts(),
         vue(),
         {
             name: 'override-config',
